@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรไฟล์: ธีระเดช บุษบา</title>
+    <!-- Google Fonts for a futuristic feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+Thai:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS ตัวแปรสำหรับสี */
+        :root {
+            --red-iron-man: #ff4500; /* Orange-Red for a more vibrant feel */
+            --gold-iron-man: #FFD700;
+            --dark-bg: #0d0d0d;
+            --light-gold: #fff5ba;
+            --glow-color: #ff9900;
+        }
+
+        /* การตั้งค่าพื้นฐานของ body */
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-gold);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+            background-image: radial-gradient(circle, var(--red-iron-man) 1px, transparent 1px),
+                              radial-gradient(circle, var(--gold-iron-man) 1px, transparent 1px);
+            background-size: 50px 50px, 100px 100px;
+            background-position: 0 0, 50px 50px;
+            animation: backgroundMove 30s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            from { background-position: 0 0, 50px 50px; }
+            to { background-position: 500px 500px, 550px 550px; }
+        }
+
+        /* คอนเทนเนอร์หลักของเว็บเพจ */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--gold-iron-man);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: containerGlow 5s infinite alternate;
+        }
+
+        @keyframes containerGlow {
+            from { box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); }
+            to { box-shadow: 0 0 40px rgba(255, 69, 0, 0.8), 0 0 50px rgba(255, 215, 0, 0.8); }
+        }
+        
+        /* สไตล์สำหรับหัวข้อ */
+        h1, h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--gold-iron-man);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: var(--red-iron-man);
+        }
+
+        /* สไตล์สำหรับเนื้อหาในแต่ละหน้า */
+        .page-content {
+            display: none;
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+            transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+        }
+
+        .page-content.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .page-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* เมนูนำทางด้านล่าง */
+        .navbar {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem;
+            border-radius: 50px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+            display: flex;
+            gap: 1.5rem;
+            z-index: 20;
+        }
+
+        .nav-button {
+            background: transparent;
+            color: var(--light-gold);
+            border: 2px solid var(--gold-iron-man);
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .nav-button:hover, .nav-button.active {
+            background: linear-gradient(45deg, var(--red-iron-man), var(--gold-iron-man));
+            color: var(--dark-bg);
+            border-color: var(--dark-bg);
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(255, 69, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.8);
+        }
+
+        .nav-button.active {
+            background: linear-gradient(45deg, var(--red-iron-man), var(--gold-iron-man));
+            color: var(--dark-bg);
+            border: none;
+        }
+        
+        /* สไตล์สำหรับ Arc Reactor */
+        .arc-reactor {
+            width: 150px;
+            height: 150px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 30px 10px rgba(127, 255, 212, 0.8),
+                        0 0 60px 20px rgba(127, 255, 212, 0.6),
+                        0 0 90px 30px rgba(127, 255, 212, 0.4);
+            animation: pulse 2s infinite ease-in-out;
+            z-index: 1;
+        }
+        
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+        }
+
+        .arc-reactor:before {
+            content: '';
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, #fff 10%, #7FFFD4 40%, #000 70%);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .arc-reactor:after {
+            content: '';
+            width: 50%;
+            height: 50%;
+            border-radius: 50%;
+            border: 3px solid #000;
+            box-sizing: border-box;
+            background: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        /* สไตล์ไอคอนให้มีแสง */
+        .page-content i {
+            color: var(--gold-iron-man);
+            text-shadow: 0 0 10px var(--gold-iron-man);
+            transition: all 0.3s ease;
+        }
+        
+        .page-content i:hover {
+            transform: scale(1.1) rotate(5deg);
+            text-shadow: 0 0 20px var(--red-iron-man), 0 0 30px var(--gold-iron-man);
+        }
+
+        /* Media Queries สำหรับการปรับขนาดหน้าจอ */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+                width: 95%;
+            }
+            .navbar {
+                bottom: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+                padding: 0.5rem;
+            }
+            .nav-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Arc Reactor Animation -->
+    <div class="arc-reactor"></div>
+
+    <div class="container">
+        <!-- Page 1: Home -->
+        <div id="page-1" class="page-content active">
+            <h1>ระบบยืนยันตัวตน</h1>
+            <h2>รหัส: ธีระเดช บุษบา</h2>
+            <p>ยินดีต้อนรับสู่โปรไฟล์ของผม! ผมคือ นายธีระเดช บุษบา พร้อมที่จะแสดงข้อมูลเกี่ยวกับตัวตนของผม</p>
+            <p>กรุณาใช้เมนูนำทางด้านล่างเพื่อเข้าถึงข้อมูลต่างๆ</p>
+        </div>
+
+        <!-- Page 2: About Me -->
+        <div id="page-2" class="page-content">
+            <h1>ข้อมูลทั่วไป</h1>
+            <h2>ชื่อเล่น: อาร์ท</h2>
+            <p>ผมชื่ออาร์ทครับ เป็นคนที่มีความสนใจในเรื่องต่างๆ มากมาย โดยเฉพาะเรื่องที่เกี่ยวข้องกับเทคโนโลยีและความคิดสร้างสรรค์</p>
+            <p>หากคุณต้องการทราบข้อมูลเพิ่มเติมเกี่ยวกับความสนใจของผม โปรดไปยังหน้าถัดไป</p>
+        </div>
+
+        <!-- Page 3: Interests -->
+        <div id="page-3" class="page-content">
+            <h1>ความสนใจ</h1>
+            <h2>นวัตกรรม & สิ่งประดิษฐ์</h2>
+            <p>ผมมีความหลงใหลในเรื่องของนวัตกรรมและสิ่งประดิษฐ์มาโดยตลอด การคิดค้นและสร้างสรรค์สิ่งใหม่ๆ คือสิ่งที่ทำให้ผมรู้สึกตื่นเต้นและท้าทาย</p>
+            <p>ผมเชื่อว่าเทคโนโลยีสามารถเปลี่ยนแปลงโลกให้ดีขึ้นได้</p>
+            <i class="fa-solid fa-lightbulb fa-5x" style="color:var(--gold-iron-man); margin: 1rem 0;"></i>
+        </div>
+
+        <!-- Page 4: Education -->
+        <div id="page-4" class="page-content">
+            <h1>ประวัติการศึกษา</h1>
+            <h2>โรงเรียน: สุรธรรมพิทักษ์</h2>
+            <p>ผมกำลังศึกษาอยู่ที่โรงเรียนสุรธรรมพิทักษ์ ซึ่งเป็นสถานที่ที่หล่อหลอมความรู้และทักษะให้กับผม</p>
+            <p>การเรียนรู้สำหรับผมไม่ได้จำกัดแค่ในห้องเรียน แต่รวมถึงการได้เรียนรู้จากสิ่งรอบตัวด้วย</p>
+            <i class="fa-solid fa-graduation-cap fa-5x" style="color:var(--gold-iron-man); margin: 1rem 0;"></i>
+        </div>
+
+        <!-- Page 5: Hobbies -->
+        <div id="page-5" class="page-content">
+            <h1>งานอดิเรก</h1>
+            <h2>เล่นเกม</h2>
+            <p>เมื่อมีเวลาว่าง ผมชอบใช้เวลาไปกับการเล่นเกมครับ เกมไม่ใช่แค่ความบันเทิง แต่ยังช่วยฝึกการคิดวิเคราะห์และแก้ปัญหาด้วย</p>
+            <p>นอกจากนี้ เกมยังเป็นช่องทางให้ได้พบปะเพื่อนใหม่ๆ อีกด้วย</p>
+            <i class="fa-solid fa-gamepad fa-5x" style="color:var(--gold-iron-man); margin: 1rem 0;"></i>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <button class="nav-button active" onclick="showPage(1)">หน้าหลัก</button>
+        <button class="nav-button" onclick="showPage(2)">เกี่ยวกับผม</button>
+        <button class="nav-button" onclick="showPage(3)">ความสนใจ</button>
+        <button class="nav-button" onclick="showPage(4)">การศึกษา</button>
+        <button class="nav-button" onclick="showPage(5)">งานอดิเรก</button>
+    </div>
+
+    <script>
+        // ฟังก์ชันสำหรับสลับหน้าเว็บ
+        function showPage(pageNumber) {
+            const pages = document.querySelectorAll('.page-content');
+            const navButtons = document.querySelectorAll('.nav-button');
+
+            // ซ่อนทุกหน้า
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // เอา active class ออกจากทุกปุ่ม
+            navButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // แสดงหน้าปัจจุบันและเพิ่ม active class ให้ปุ่ม
+            const currentPage = document.getElementById(`page-${pageNumber}`);
+            const currentButton = navButtons[pageNumber - 1];
+            
+            // ใช้ setTimeout เพื่อให้แน่ใจว่าการเปลี่ยนคลาสมีผลก่อนเริ่มแอนิเมชั่น
+            setTimeout(() => {
+                currentPage.classList.add('active');
+                currentButton.classList.add('active');
+            }, 50); // ดีเลย์เล็กน้อยเพื่อให้เบราว์เซอร์รับรู้การเปลี่ยนคลาส
+        }
+    </script>
+</body>
+</html>
