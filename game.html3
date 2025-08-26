@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaimalav - เกมกินจุด</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+        #game-container {
+            border: 2px solid #333;
+            background-color: #fff;
+            position: relative;
+            overflow: hidden;
+            width: 600px;
+            height: 400px;
+        }
+        #player {
+            width: 20px;
+            height: 20px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            position: absolute;
+            transition: all 0.05s ease-out;
+        }
+        .dot {
+            width: 15px;
+            height: 15px;
+            background-color: #FFC107;
+            border-radius: 50%;
+            position: absolute;
+        }
+        #score {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 1.5em;
+            color: #333;
+        }
+        #game-title {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="game-title">Kaimalav</div>
+        <div id="score">คะแนน: 0</div>
+        <div id="player"></div>
+    </div>
+
+    <script>
+        const gameContainer = document.getElementById('game-container');
+        const player = document.getElementById('player');
+        const scoreDisplay = document.getElementById('score');
+        const containerWidth = gameContainer.clientWidth;
+        const containerHeight = gameContainer.clientHeight;
+        const playerSize = 20;
+        const dotSize = 15;
+        let score = 0;
+
+        let playerX = containerWidth / 2 - playerSize / 2;
+        let playerY = containerHeight / 2 - playerSize / 2;
+
+        const moveSpeed = 10;
+
+        function updatePlayerPosition() {
+            player.style.left = `${playerX}px`;
+            player.style.top = `${playerY}px`;
+        }
+
+        function createDot() {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            dot.style.left = `${Math.random() * (containerWidth - dotSize)}px`;
+            dot.style.top = `${Math.random() * (containerHeight - dotSize)}px`;
+            gameContainer.appendChild(dot);
+        }
+
+        function checkCollision() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach(dot => {
+                const dotRect = dot.getBoundingClientRect();
+                const playerRect = player.getBoundingClientRect();
+
+                if (
+                    playerRect.left < dotRect.right &&
+                    playerRect.right > dotRect.left &&
+                    playerRect.top < dotRect.bottom &&
+                    playerRect.bottom > dotRect.top
+                ) {
+                    dot.remove();
+                    score++;
+                    scoreDisplay.textContent = `คะแนน: ${score}`;
+                    createDot();
+                }
+            });
+        }
+
+        function gameLoop() {
+            checkCollision();
+            requestAnimationFrame(gameLoop);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            switch (e.key) {
+                case 'ArrowUp':
+                    playerY = Math.max(0, playerY - moveSpeed);
+                    break;
+                case 'ArrowDown':
+                    playerY = Math.min(containerHeight - playerSize, playerY + moveSpeed);
+                    break;
+                case 'ArrowLeft':
+                    playerX = Math.max(0, playerX - moveSpeed);
+                    break;
+                case 'ArrowRight':
+                    playerX = Math.min(containerWidth - playerSize, playerX + moveSpeed);
+                    break;
+            }
+            updatePlayerPosition();
+        });
+
+        // Initialize game
+        updatePlayerPosition();
+        for (let i = 0; i < 5; i++) {
+            createDot();
+        }
+        gameLoop();
+    </script>
+</body>
+</html>
