@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Basketball Toss</title>
+<style>
+  body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; /* ป้องกัน scrollbars */
+  }
+
+  canvas {
+    background-color: #87ceeb; /* ท้องฟ้าสีฟ้า */
+    border: 2px solid #555;
+  }
+
+  h1 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    color: #333;
+    text-shadow: 1px 1px 2px #fff;
+  }
+
+  #game-ui {
+    margin-top: 10px;
+    font-size: 1.5em;
+    color: #333;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<h1>Basketball Toss</h1>
+
+<canvas id="gameCanvas" width="800" height="600"></canvas>
+
+<div id="game-ui">
+  <p>Score: <span id="score">0</span></p>
+  <p>Time: <span id="timer">30</span></p>
+  <div id="status-message"></div>
+</div>
+
+<script>
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  const scoreEl = document.getElementById('score');
+  const timerEl = document.getElementById('timer');
+  const statusMessageEl = document.getElementById('status-message');
+
+  const BALL_RADIUS = 15;
+  const HOOP_WIDTH = 60;
+  const HOOP_HEIGHT = 10;
+  const HOOP_RIM_THICKNESS = 5;
+
+  let score = 0;
+  let time = 30;
+  let gameInterval;
+  let isDragging = false;
+  let dragStartTime;
+  let mouse = { x: 0, y: 0 };
+
+  const ball = {
+    x: canvas.width / 2,
+    y: canvas.height - 50,
+    vx: 0,
+    vy: 0,
+    gravity: 0.2,
+    color: 'orange',
+    isMoving: false
+  };
+
+  const hoop = {
+    x: Math.random() * (canvas.width - HOOP_WIDTH - 200) + 100,
+    y: canvas
